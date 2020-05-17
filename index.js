@@ -4,10 +4,11 @@ var url = "mongodb://localhost:27017/";
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo=db.db('myapp2');
-
-  dbo.collection("customers").drop(function(err,result){
+  var myquery={name:"mani"};
+  var new_value={$set:{name:"ayush", age:"23",id:"10055"}};
+  dbo.collection("customers").updateOne(myquery,new_value,function(err,result){
       if(err) throw err;
-      if(result) console.log("Collection deleted!");
+      console.log("1 documents updated!");
     db.close();
   });
   
